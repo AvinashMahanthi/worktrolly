@@ -1,4 +1,4 @@
-<ng-container *ngIf="rawDataObservable |async">
+<ng-container *ngIf=" (currentSprintName!== 'Backlog') && (rawDataObservable |async)">
     <ng-container *ngFor="let item of mainData | async">
         <ng-container *ngIf="item.id === currentSprintName">
             <div class="container p-2">

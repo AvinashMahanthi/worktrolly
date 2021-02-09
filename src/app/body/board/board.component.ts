@@ -1,3 +1,4 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
@@ -45,7 +46,9 @@ export class BoardComponent implements OnInit {
     this.navbarHandler.addToNavbar(this.componentName);
 
     // Efficient for now
+    if (this.currentSprintName != "Backlog") {
     this.getCurrentSprint();
+    }
     this.readCurrentSprintData();
   }
 

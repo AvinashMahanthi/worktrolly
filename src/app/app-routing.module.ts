@@ -14,7 +14,7 @@ import { MyDashBoardComponent } from './body/my-dashboard/my-dashboard.component
 const redirectLoggedInToDashboard = () => redirectLoggedInTo(['']);
 
 const routes: Routes = [
-  { path: 'Board', component: BoardComponent },
+  { path: 'Board/:sprintName', component: BoardComponent },
   { path: 'CreateNewSession', component: CreateNewSessionComponent },
   { path: 'StartNewSprint', component: CreateNewSprintComponent },
   { path: 'Tasks/:category/:currentSprintName', component: TasksComponent },

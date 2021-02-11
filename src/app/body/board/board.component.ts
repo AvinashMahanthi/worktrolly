@@ -1,7 +1,7 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, pipe } from 'rxjs';
 import { map } from 'rxjs/operators'
 import { Main, MainDataId, RawDataId, RawDataType } from 'src/app/Interface/RawDataInterface';
@@ -28,7 +28,7 @@ export class BoardComponent implements OnInit {
 
   filterSprintNumber: string;
 
-  constructor(private db: AngularFirestore, private router: Router, public navbarHandler: NavbarHandlerService) { }
+  constructor(private db: AngularFirestore, private router: Router, public navbarHandler: NavbarHandlerService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     // Better way of use db.
@@ -44,6 +44,7 @@ export class BoardComponent implements OnInit {
     // );
 
     this.navbarHandler.addToNavbar(this.componentName);
+    this.currentSprintName = this.route.snapshot.params['sprintName'];
 
     // Efficient for now
     if (this.currentSprintName != "Backlog") {

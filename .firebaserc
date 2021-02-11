@@ -1,6 +1,6 @@
 {
   "projects": {
-    "default": "worktrolly-e87bc"
+    "default": "worktrolly"
   },
   "targets": {
     "worktrolly": {

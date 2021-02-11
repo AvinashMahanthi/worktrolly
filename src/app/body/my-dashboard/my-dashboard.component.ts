@@ -34,7 +34,7 @@ export class MyDashBoardComponent implements OnInit {
       const data = action as User;
       this.user = data;
       if (data == null) {
-        this.router.navigate(['/Board']);
+        this.router.navigate(['/Board',this.currentSprintName]);
       }
       this.username = data.displayName;
       return { ...data }

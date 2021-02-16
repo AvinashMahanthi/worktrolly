@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BoardComponent } from '../body/board/board.component';
 import { AuthService } from '../services/auth.service';
 import { BackendService } from '../services/backend.service';
 
@@ -11,11 +10,16 @@ import { BackendService } from '../services/backend.service';
 })
 export class HeaderComponent implements OnInit {
 
+
+  sprintName:string
+
   constructor(public router: Router, public authService: AuthService, public backendService: BackendService) { }
 
   ngOnInit(): void {
+    this.backendService.getCurrentSprint().subscribe(data => {
+      this.sprintName = "S" +  data.CurrentSprintId;
+  })
   }
-
   startNewSprint() {
     this.router.navigate(['/StartNewSprint']);
   }
@@ -25,7 +29,7 @@ export class HeaderComponent implements OnInit {
   }
 
   Board(){
-    this.router.navigate(['/Board',this.backendService.currentSprintName]);
+    this.router.navigate(['/Board',this.sprintName]);
   }
 
   myDashBoard(){

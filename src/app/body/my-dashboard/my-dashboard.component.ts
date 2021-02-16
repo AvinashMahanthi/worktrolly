@@ -23,17 +23,14 @@ export class MyDashBoardComponent implements OnInit {
   constructor(public router: Router, public authService: AuthService, public backendService: BackendService) { }
 
   ngOnInit(): void {
-    this.backendService.getCurrentSprint().subscribe(data => {
-      this.currentSprintNumber = data.CurrentSprintId;
-      this.currentSprintName = "S" + this.currentSprintNumber;
-    });
+    this.currentSprintName =this.backendService.currentSprintName
     this.readUser();
   }
   readUser() {
     this.userObservable = this.authService.afauth.user.pipe(map(action => {
       const data = action as User;
       this.user = data;
-      if (data == null) {
+      if (data == null && this.currentSprintName!==undefined) {
         this.router.navigate(['/Board',this.currentSprintName]);
       }
       this.username = data.displayName;

@@ -82,7 +82,7 @@ export class TasksComponent implements OnInit {
   }
   backToDashboard() {
     this.navbarHandler.removeFromNavbar();
-    this.router.navigate(['/Board']);
+    this.router.navigate(['/Board',this.currentSprintName]);
   }
 
   showFilterOptions() {

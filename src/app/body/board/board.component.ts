@@ -22,6 +22,7 @@ export class BoardComponent implements OnInit {
 
   currentSprintNumber: number;
   currentSprintName: string;
+  sprintName:string
 
   public mainData: Observable<MainDataId[]>;
   public mainCollection: AngularFirestoreCollection<Main>;
@@ -44,13 +45,13 @@ export class BoardComponent implements OnInit {
     // );
 
     this.navbarHandler.addToNavbar(this.componentName);
-    this.currentSprintName = this.route.snapshot.params['sprintName'];
+    this.sprintName = this.route.snapshot.params['sprintName'];
 
     // Efficient for now
     if (this.currentSprintName != "Backlog") {
     this.getCurrentSprint();
     }
-    this.readCurrentSprintData();
+    this.readSprintData();
   }
 
   // Reading data as get() method
@@ -89,7 +90,7 @@ export class BoardComponent implements OnInit {
     )
   }
 
-  readCurrentSprintData() {
+  readSprintData() {
     this.mainCollection = this.db.collection<Main>('Main');
     this.mainData = this.mainCollection.snapshotChanges().pipe(
       map(actions => actions.map(a => {
